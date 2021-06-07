@@ -1,4 +1,13 @@
-from utils import badge
+import PIL
+from wand.image import Image
+
+from pyrogram import Client
+from pyrogram.types import Message
+from weasyprint import HTML
+
+
+from pathlib import Path 
+from utils import badge, main_css, font_config
 
 DIR = Path(__file__).parent.resolve()
 
@@ -23,9 +32,6 @@ class quote:
             with Image(filename=self._base) as img:
                 img.trim(fuzz=0.2*img.quantum_range)
                 img.save(filename=self._crop)
-        except Exception as e:
-            print(f"Error :: {e}")
-        try:
             with Image(filename=self._crop) as img:
                 img.transparent_color(
                     "white" ,
@@ -33,16 +39,12 @@ class quote:
                     fuzz=0.2*k.quantum_range
                 )
                 img.save(filename=self._transparent)
-        except Exception as e:
-            print (f"Error :: {e}")
-        try:
             with PIL.Image.open(self._transparent) as img:
                 img.convert("RGBA")
                 img.save(self._final, 'WebP')
         except Exception as e:
             print (f"Error :: {e}")
        
-
     def get_name(m: Message):
         try:
             user = m.reply_to_message.from_user
@@ -64,9 +66,8 @@ class quote:
     async def get_pfp(self, m: Message):
         try:
             photo = m.reply_to_message.from_user.small_file_id 
-            exception = photo if photo else self.default_dp()
-            await client.download_media(message=exception, file_name=self._pfp)
-
+            # exception = photo if photo else self.default_dp()
+            await client.download_media(message=photo, file_name=self._pfp)
         except Exception as e:
             print (f"Error :: {e}")
 
@@ -78,7 +79,7 @@ class quote:
         </div>
         <div id="right">
         <div id="box">
-        <h1 style="color: {color};">{get_name(m)}</h1>
+        <h1 style="color: white;">{get_name(m)}</h1>
         <h2 style="color: white;">{get_text(m)}</h2>
         </div>
         </div>'''
@@ -93,7 +94,9 @@ class quote:
             print (f"Error :: {e}")
         self.run()
         try:
-            await client.send_sticker()
+            await c.send_sticker()
+            os.remove(self._pfp)
+            shutil.rmtree("QX", ignore_errors=True)
         except Exception as e:
             print (f"Error :: {e}")
 
