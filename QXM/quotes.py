@@ -94,7 +94,7 @@ class quote:
             print (f"Error :: {e}")
         self.run()
         try:
-            await c.send_sticker()
+            await c.send_sticker(m.chat_id, self._final)
             os.remove(self._pfp)
             shutil.rmtree("QX", ignore_errors=True)
         except Exception as e:
