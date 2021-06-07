@@ -1,5 +1,5 @@
 from weasyprint import CSS
-from .utils import font_config
+from fc import font_config
 
 main_css = CSS(
 string='''
