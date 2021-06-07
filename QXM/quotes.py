@@ -68,20 +68,20 @@ class quote:
         try:
             photo = m.reply_to_message.from_user.small_file_id 
             # exception = photo if photo else self.default_dp()
-            await client.download_media(message=photo, file_name=self._pfp)
+            await Client.download_media(message=photo, file_name=self._pfp)
         except Exception as e:
             print (f"Error :: {e}")
 
-    async def create(self, c: Client, m: Message):
+    async def create(self, Client, Message):
         html = HTML(
         string=f'''
         <div id="left">
-        <img src=file:///{await get_pfp(c, m)}>
+        <img src=file:///{await get_pfp(Client, Message)}>
         </div>
         <div id="right">
         <div id="box">
-        <h1 style="color: white;">{get_name(m)}</h1>
-        <h2 style="color: white;">{get_text(m)}</h2>
+        <h1 style="color: white;">{get_name(Message)}</h1>
+        <h2 style="color: white;">{get_text(Message)}</h2>
         </div>
         </div>'''
         )
@@ -95,7 +95,7 @@ class quote:
             print (f"Error :: {e}")
         self.run()
         try:
-            await c.send_sticker(m.chat_id, self._final)
+            await c.send_sticker(Message.chat_id, self._final)
             os.remove(self._pfp)
             shutil.rmtree("QX", ignore_errors=True)
         except Exception as e:
