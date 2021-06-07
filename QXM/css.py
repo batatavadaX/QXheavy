@@ -25,10 +25,6 @@ border-radius: 50%;
 height: 70px;
 width: 70px;
 }
-pre
-{
-font-family: Noto Color Emoji;
-}
 @font-face 
 {
 font-family: 'Noto Color Emoji';
