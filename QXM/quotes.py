@@ -72,7 +72,7 @@ class quote:
         except Exception as e:
             print (f"Error :: {e}")
 
-    async def create(self, c: client, m: Message):
+    async def create(self, c: Client, m: Message):
         html = HTML(
         string=f'''
         <div id="left">
