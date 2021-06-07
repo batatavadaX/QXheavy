@@ -7,7 +7,7 @@ from weasyprint import HTML
 
 
 from pathlib import Path 
-from utils import badge, main_css, font_config
+from utils import main_css, font_config
 
 DIR = Path(__file__).parent.resolve()
 
