@@ -10,6 +10,7 @@ from pathlib import Path
 from utils import main_css, font_config
 
 DIR = Path(__file__).parent.resolve()
+badge = 1234
 
 class quote:
     def __init__(
