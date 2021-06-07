@@ -18,7 +18,7 @@ class quote:
         *,
         pfp :str = (f"{DIR}/dp{badge}.jpg"),
         base :str = (f"QX/base{badge}.jpg"),
-        crop :str = (f"QX/cropped{badge}.jpg")
+        crop :str = (f"QX/cropped{badge}.jpg"),
         transparent :str = (f"QX/transparent{badge}.jpg"),
         final :str = (f"QX/final{badge}.jpg")
     ) -> None:
@@ -99,26 +99,4 @@ class quote:
             os.remove(self._pfp)
             shutil.rmtree("QX", ignore_errors=True)
         except Exception as e:
-            print (f"Error :: {e}")
-
-
-
-
-    
-
-    
-
-
-
-          
-
-
-
-
-    
-
-    
-
-
-
-          
+            print (f"Error :: {e}")        
