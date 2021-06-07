@@ -16,7 +16,7 @@ class quote:
         self._base = base
         self._crop = crop
         self._transparent = transparent
-        self._final - final
+        self._final = final
 
     def run(self):
         try:
@@ -85,7 +85,7 @@ class quote:
         )
         try:
             html.write_png(
-                output,
+                self._base,
                 stylesheets=[main_css],
                 font_config=font_config
             )
